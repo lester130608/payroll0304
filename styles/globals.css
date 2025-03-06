@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fondo generado dinámicamente con SVG para todo el body */
+body {
+  background-color: #f4f4f4;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='80' viewBox='0 0 200 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='0' y='50' font-size='24' fill='%23cccccc' font-family='Arial, sans-serif' opacity='0.2'%3EDTT Coaching Services LLC%3C/text%3E%3C/svg%3E");
+  background-size: 200px 80px;
+}
