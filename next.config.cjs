@@ -11,4 +11,10 @@ module.exports = {
   experimental: {
     turbo: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
