@@ -1,49 +1,60 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function SidebarAdmin() {
+  const [isReportsOpen, setIsReportsOpen] = useState(false);
+  const router = useRouter();
+
+  const toggleReports = () => {
+    setIsReportsOpen(!isReportsOpen);
+  };
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+    router.push("/login");
+  };
+
   return (
-    <aside className="fixed left-0 top-0 h-full w-60 bg-gray-100 shadow-md p-4">
-      <h2 className="text-xl font-bold mb-4">Sidebar Admin</h2>
-      <nav>
-        <ul className="space-y-2">
-          <li>
-            <Link href="/dashboard" className="block p-2 hover:bg-gray-200">
-              Dashboard
+    <div className="w-64 h-screen bg-gray-800 text-white flex flex-col">
+      <div className="p-4">
+        <h2 className="text-2xl font-bold">Dashboard</h2>
+      </div>
+      <nav className="mt-4 flex-1">
+        <ul>
+          <li className="p-2">
+            <Link href="/dashboard">
+              <span className="hover:bg-gray-700 p-2 rounded block">Dashboard</span>
             </Link>
           </li>
-          <li>
-            <Link href="/employees" className="block p-2 hover:bg-gray-200">
-              Employees
+          <li className="p-2">
+            <Link href="/employees">
+              <span className="hover:bg-gray-700 p-2 rounded block">Employees</span>
             </Link>
           </li>
-          <li>
-            <Link href="/payroll/general" className="block p-2 hover:bg-gray-200">
-              Payroll General
+          <li className="p-2">
+            <Link href="/payroll">
+              <span className="hover:bg-gray-700 p-2 rounded block">Payroll</span>
             </Link>
           </li>
-          <li>
-            <Link href="/settings" className="block p-2 hover:bg-gray-200">
-              Settings
-            </Link>
-          </li>
-          <li>
-            <Link href="/reports" className="block p-2 hover:bg-gray-200">
-              Reports
-            </Link>
-          </li>
+          <li className="p-2">
+  <Link href="/reports">
+    <span className="hover:bg-gray-700 p-2 rounded block">Reports</span>
+  </Link>
+</li>
         </ul>
       </nav>
-      <div className="mt-6">
+      <div className="p-4">
         <button
-          onClick={() => signOut({ redirect: false })}
-          className="w-full p-2 bg-red-500 text-white rounded hover:bg-red-600"
+          onClick={handleLogout}
+          className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         >
           Logout
         </button>
       </div>
-    </aside>
+    </div>
   );
 }

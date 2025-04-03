@@ -1,9 +1,9 @@
-// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "../styles/globals.css"; // Estilos globales base (por ejemplo, fondo, SVG, etc.)
-import "./globals.css"; // Estilos específicos de la app (variables, tipografías, etc.)
+import "../styles/globals.css";
+import "./globals.css";
 import ClientWrapper from "@/components/ClientWrapper";
+import SidebarAdmin from "@/components/SidebarAdmin";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Se envuelve el contenido en ClientWrapper */}
-        <ClientWrapper>{children}</ClientWrapper>
+        <div className="flex">
+          <SidebarAdmin />
+          <div className="ml-64 flex-1 p-4">
+            <ClientWrapper>{children}</ClientWrapper>
+          </div>
+        </div>
       </body>
     </html>
   );

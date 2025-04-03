@@ -9,5 +9,6 @@ module.exports = {
     return config;
   },
   experimental: {
-    experimental: { turbo: true }  },
+    turbo: true,
+  },
 };
